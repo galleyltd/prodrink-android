@@ -1,4 +1,4 @@
-package io.prodrink.ui
+package io.prodrink.ui.main
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
