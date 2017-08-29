@@ -11,5 +11,7 @@ import com.github.salomonbrys.kodein.instance
 class App : Application(), KodeinAware {
     override val kodein: Kodein = Kodein {
         bind<Context>() with instance(this@App)
+//        import(NetworkModule.module)
+//        import(PresentationModule.module)
     }
 }
