@@ -16,7 +16,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ext.betaDistributionGroupAliases = "beta-android"
-        ext.betaDistributionReleaseNotesFilePath = "beta_release_notes.txt"
     }
     buildTypes {
         debug {
