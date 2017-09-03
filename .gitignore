@@ -54,5 +54,8 @@ freeline.py
 freeline/
 freeline_project_description.json
 
+# Fabric plugin
+fabric.properties
+
 # Custom
 .idea
