@@ -11,8 +11,6 @@ android {
         applicationId "io.prodrink"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ext.betaDistributionGroupAliases = "beta-android"
@@ -154,3 +152,11 @@ def initFabricPropertiesIfNeeded() {
 android.signingConfigs.release.storePassword = System.getenv("storepass")
 android.signingConfigs.release.keyAlias = System.getenv("keyalias")
 android.signingConfigs.release.keyPassword = System.getenv("keypass")
+
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = Integer.parseInt(System.getenv("TRAVIS_BUILD_NUMBER") ?: "0")
+
+android.defaultConfig.versionCode versionMajor * 100000 + versionMinor * 10000 + versionPatch * 1000 + versionBuild
+android.defaultConfig.versionName "${versionMajor}.${versionMinor}.${versionPatch}"
