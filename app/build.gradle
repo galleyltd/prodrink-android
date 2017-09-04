@@ -69,6 +69,9 @@ dependencies {
         transitive = true
     }
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.2'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

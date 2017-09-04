@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -37,13 +36,14 @@ import io.prodrink.R;
 import io.prodrink.ui.barcode.camera.CameraSource;
 import io.prodrink.ui.barcode.camera.CameraSourcePreview;
 import io.prodrink.ui.barcode.camera.GraphicOverlay;
+import io.prodrink.ui.base.activity.BaseActivity;
 
 /**
  * Activity for the multi-tracker app.  This app detects barcodes and displays the value with the
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
  * size, and ID of each barcode.
  */
-public final class BarcodeCaptureActivity extends AppCompatActivity {
+public final class BarcodeCaptureActivity extends BaseActivity {
     private static final String TAG = "Barcode-reader";
 
     // intent request code to handle updating play services if needed.
