@@ -17,18 +17,23 @@ android {
 
         ext.betaDistributionGroupAliases = "beta-android"
     }
+    signingConfigs {
+        release {
+            storeFile file("../keystore.jks")
+        }
+    }
     buildTypes {
         debug {
-            // disable crashlytics
             buildConfigField "boolean", "USE_CRASHLYTICS", "false"
             ext.enableCrashlytics = false
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            // enable crashlytics
             buildConfigField "boolean", "USE_CRASHLYTICS", "true"
             ext.enableCrashlytics = true
+            ext.betaDistributionNotifications = false
+            signingConfig = signingConfigs.release
         }
     }
     lintOptions {
@@ -145,3 +150,7 @@ def initFabricPropertiesIfNeeded() {
         }
     }
 }
+
+android.signingConfigs.release.storePassword = System.getenv("storepass")
+android.signingConfigs.release.keyAlias = System.getenv("keyalias")
+android.signingConfigs.release.keyPassword = System.getenv("keypass")
