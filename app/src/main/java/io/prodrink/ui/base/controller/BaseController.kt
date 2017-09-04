@@ -52,7 +52,7 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
      * Issue link: https://issuetracker.google.com/issues/37657375
      */
     fun MenuItem.fixExpand() {
-        val expandListener = object : MenuItemCompat.OnActionExpandListener {
+        val expandListener = object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 return true
             }
@@ -62,7 +62,7 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
                 return true
             }
         }
-        MenuItemCompat.setOnActionExpandListener(this, expandListener)
+        expandListener.onMenuItemActionExpand(this)
     }
 
 }

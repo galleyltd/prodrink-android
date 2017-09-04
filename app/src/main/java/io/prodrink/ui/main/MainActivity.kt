@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class MainActivity : BaseActivity() {
     private lateinit var router: Router
 
-    private val startScreenId = R.id.nav_camera
+    private val startScreenId = R.id.nav_categories
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +43,7 @@ class MainActivity : BaseActivity() {
             val currentRoot = router.backstack.firstOrNull()
             if (currentRoot?.tag()?.toIntOrNull() != id) {
                 when (id) {
-                    R.id.nav_camera -> setRoot(CategoryController(), id)
-                    R.id.nav_gallery -> {}
-                    R.id.nav_slideshow -> {}
-                    R.id.nav_manage -> {}
-                    R.id.nav_share -> {}
-                    R.id.nav_send -> {}
+                    R.id.nav_categories -> setRoot(CategoryController(), id)
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -93,12 +88,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        val backstackSize = router.backstackSize
+        val backStackSize = router.backstackSize
         if (drawer_layout.isDrawerOpen(GravityCompat.START) || drawer_layout.isDrawerOpen(GravityCompat.END)) {
             drawer_layout.closeDrawers()
-        } else if (backstackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
+        } else if (backStackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
             setSelectedDrawerItem(startScreenId)
-        } else if (backstackSize == 1 || !router.handleBack()) {
+        } else if (backStackSize == 1 || !router.handleBack()) {
             super.onBackPressed()
         }
     }
@@ -113,9 +108,8 @@ class MainActivity : BaseActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
