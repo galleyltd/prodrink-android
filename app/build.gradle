@@ -44,7 +44,7 @@ android {
 }
 
 buildscript {
-    ext.supportVersion = '26.0.1'
+    ext.supportVersion = '26.0.2'
     ext.retrofitVersion = '2.3.0'
     ext.rxBindingVersion = '2.0.0'
     ext.nucleusVersion = '3.0.0'
@@ -69,8 +69,8 @@ dependencies {
         transitive = true
     }
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.2'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
