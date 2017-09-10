@@ -7,15 +7,13 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import io.prodrink.R
 import io.prodrink.data.models.Category
 
-class CatalogItem(private val category: Category) : AbstractFlexibleItem<CatalogHolder>() {
+class CatalogItem(val category: Category) : AbstractFlexibleItem<CatalogHolder>() {
     override fun createViewHolder(view: View?,
                                   adapter: FlexibleAdapter<out IFlexible<*>>?): CatalogHolder {
-        return CatalogGridHolder(view!!, adapter!!)
+        return CatalogHolder(view!!, adapter!!)
     }
 
-    override fun getLayoutRes(): Int {
-        return R.layout.catalog_item
-    }
+    override fun getLayoutRes(): Int = R.layout.catalog_item
 
     override fun bindViewHolder(adapter: FlexibleAdapter<*>,
                                 holder: CatalogHolder,
@@ -33,10 +31,5 @@ class CatalogItem(private val category: Category) : AbstractFlexibleItem<Catalog
         return false
     }
 
-    override fun hashCode(): Int {
-        return category.id.hashCode()
-    }
-
-
-
+    override fun hashCode(): Int = category.id.hashCode()
 }

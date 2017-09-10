@@ -1,31 +1,45 @@
-package io.prodrink.ui.catalog
+package io.prodrink.ui.drink.list
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.jakewharton.rxbinding2.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import io.prodrink.R
+import io.prodrink.ui.barcode.BarcodeCaptureActivity
 import io.prodrink.ui.base.controller.NucleusController
 import kotlinx.android.synthetic.main.catalog_controller.view.*
-import io.prodrink.ui.barcode.BarcodeCaptureActivity
-import io.prodrink.ui.drink.list.DrinkListController
 
-class CatalogController :
-        NucleusController<CatalogPresenter>(),
+class DrinkListController(private val categoryId: String) :
+        NucleusController<DrinkListPresenter>(),
         FlexibleAdapter.OnItemClickListener {
+
+    companion object {
+        const val CATEGORY_EXTRA = "category"
+    }
+
+    init {
+        Bundle().apply {
+            putString(CATEGORY_EXTRA, categoryId)
+        }
+    }
+
+    @Suppress("unused")
+    constructor(bundle: Bundle) : this(bundle.getString(CATEGORY_EXTRA))
 
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
 
-    override fun createPresenter() = CatalogPresenter()
+    override fun getTitle(): String? = "Drinks ($categoryId)"
 
-    override fun getTitle(): String? = "Catalog"
+    override fun onItemClick(position: Int): Boolean {
+        return false
+    }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.catalog_controller, container, false)
+        return inflater.inflate(R.layout.drink_list_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
@@ -46,17 +60,10 @@ class CatalogController :
         }
     }
 
-    fun setCategories(categories: List<CatalogItem>) {
+    override fun createPresenter(): DrinkListPresenter = DrinkListPresenter(categoryId)
+
+    fun setDrinkItems(categories: List<DrinkListItem>) {
         adapter?.updateDataSet(categories)
-    }
-
-    override fun onItemClick(position: Int): Boolean {
-        val item = adapter?.getItem(position) as? CatalogItem ?: return false
-        router.pushController(RouterTransaction.with(DrinkListController(item.category.id))
-                .pushChangeHandler(FadeChangeHandler())
-                .popChangeHandler(FadeChangeHandler()))
-
-        return false
     }
 
     override fun onDestroyView(view: View) {
