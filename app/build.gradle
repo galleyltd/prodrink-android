@@ -38,6 +38,9 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+    dexOptions {
+        jumboMode true
+    }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
@@ -85,6 +88,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-vision:11.2.0'
 
+    implementation 'com.android.support:multidex:1.0.2'
     implementation  'eu.davidea:flexible-adapter:5.0.0-rc2'
 
     // ReactiveX
