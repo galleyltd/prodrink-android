@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:id="@+id/card"
+        android:background="@color/cardview_dark_background">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/colorBackground"
+            tools:background="?android:attr/colorBackground"
+            tools:src="@mipmap/ic_launcher"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/gradient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/gradient_shape"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:textColor="@color/textColorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_horizontal"
+            android:ellipsize="end"
+            android:padding="8dp"
+            android:shadowColor="@color/textColorPrimaryLight"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4"
+            tools:text="Sample name" />
+
+    </FrameLayout>
+
+</FrameLayout>

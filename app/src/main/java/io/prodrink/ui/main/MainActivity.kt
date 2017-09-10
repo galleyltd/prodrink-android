@@ -12,7 +12,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import io.prodrink.R
 import io.prodrink.ui.base.activity.BaseActivity
-import io.prodrink.ui.category.CategoryController
+import io.prodrink.ui.catalog.CatalogController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -43,7 +43,7 @@ class MainActivity : BaseActivity() {
             val currentRoot = router.backstack.firstOrNull()
             if (currentRoot?.tag()?.toIntOrNull() != id) {
                 when (id) {
-                    R.id.nav_categories -> setRoot(CategoryController(), id)
+                    R.id.nav_categories -> setRoot(CatalogController(), id)
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)

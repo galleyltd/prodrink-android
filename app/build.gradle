@@ -88,7 +88,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-vision:11.2.0'
 
-    implementation 'com.android.support:multidex:1.0.2'
+    implementation  'eu.davidea:flexible-adapter:5.0.0-rc2'
 
     // ReactiveX
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
@@ -158,10 +158,9 @@ android.signingConfigs.release.storePassword = System.getenv("storepass")
 android.signingConfigs.release.keyAlias = System.getenv("keyalias")
 android.signingConfigs.release.keyPassword = System.getenv("keypass")
 
-def versionMajor = 1
-def versionMinor = 0
-def versionPatch = 0
+def versionMajor = 0
+def versionMinor = 1
 def versionBuild = Integer.parseInt(System.getenv("TRAVIS_BUILD_NUMBER") ?: "0")
 
-android.defaultConfig.versionCode versionMajor * 100000 + versionMinor * 10000 + versionPatch * 1000 + versionBuild
-android.defaultConfig.versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+android.defaultConfig.versionCode versionBuild
+android.defaultConfig.versionName "${versionMajor}.${versionMinor}.${versionBuild}"

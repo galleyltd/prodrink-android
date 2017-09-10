@@ -1,33 +1,40 @@
-package io.prodrink.ui.category
+package io.prodrink.ui.catalog
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import com.jakewharton.rxbinding2.view.clicks
+import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.IFlexible
 import io.prodrink.R
 import io.prodrink.ui.base.controller.NucleusController
-import kotlinx.android.synthetic.main.categories_controller.view.*
+import kotlinx.android.synthetic.main.catalog_controller.view.*
 import io.prodrink.ui.barcode.BarcodeCaptureActivity
 
-class CategoryController : NucleusController<CategoryPresenter>() {
+class CatalogController :
+        NucleusController<CatalogPresenter>(),
+        FlexibleAdapter.OnItemClickListener {
 
-    override fun createPresenter() = CategoryPresenter()
+    private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+
+    override fun createPresenter() = CatalogPresenter()
 
     override fun getTitle(): String? {
         return "Categories"
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.categories_controller, container, false)
+        return inflater.inflate(R.layout.catalog_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
 
+        adapter = FlexibleAdapter(null, this)
+
         with(view) {
-            recycler.layoutManager = LinearLayoutManager(context)
             recycler.setHasFixedSize(true)
+            recycler.adapter = adapter
 
             fab.clicks().subscribe({
                 val intent = Intent(context, BarcodeCaptureActivity::class.java).apply {
@@ -38,7 +45,16 @@ class CategoryController : NucleusController<CategoryPresenter>() {
         }
     }
 
+    fun setCategories(categories: List<CatalogItem>) {
+        adapter?.updateDataSet(categories)
+    }
+
+    override fun onItemClick(position: Int): Boolean {
+        return true
+    }
+
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
+        adapter = null
     }
 }
