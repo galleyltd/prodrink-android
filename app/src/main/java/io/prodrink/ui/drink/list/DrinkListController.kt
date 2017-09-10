@@ -1,15 +1,12 @@
 package io.prodrink.ui.drink.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.jakewharton.rxbinding2.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import io.prodrink.R
-import io.prodrink.ui.barcode.BarcodeCaptureActivity
 import io.prodrink.ui.base.controller.NucleusController
 import kotlinx.android.synthetic.main.catalog_controller.view.*
 
@@ -50,13 +47,6 @@ class DrinkListController(private val categoryId: String) :
         with(view) {
             recycler.setHasFixedSize(true)
             recycler.adapter = adapter
-
-            fab.clicks().subscribe({
-                val intent = Intent(context, BarcodeCaptureActivity::class.java).apply {
-                    putExtra(BarcodeCaptureActivity.AutoFocus, true)
-                }
-                startActivity(intent)
-            })
         }
     }
 

@@ -14,14 +14,4 @@
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/catalog_item" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        app:layout_behavior="io.prodrink.widget.FABAnimationUpDown"
-        app:layout_anchor="@id/recycler"
-        app:layout_anchorGravity="bottom|end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_photo_camera_white" />
-
 </android.support.design.widget.CoordinatorLayout>

@@ -7,6 +7,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jakewharton.rxbinding2.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
 import eu.davidea.flexibleadapter.items.IFlexible
 import io.prodrink.R
 import io.prodrink.ui.base.controller.NucleusController
@@ -36,6 +37,8 @@ class CatalogController :
         with(view) {
             recycler.setHasFixedSize(true)
             recycler.adapter = adapter
+            recycler.addItemDecoration(FlexibleItemDecoration(context)
+                    .withOffset(4))
 
             fab.clicks().subscribe({
                 val intent = Intent(context, BarcodeCaptureActivity::class.java).apply {
